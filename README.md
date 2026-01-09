@@ -39,14 +39,16 @@ Système d'information pour la gestion centralisée et efficace des cours, ensei
 
 - **Backend** : Django 6.0.1
 - **Base de données** : SQLite (développement), PostgreSQL (production possible)
-- **Frontend** : Tailwind CSS (via CDN)
+- **Frontend** : Tailwind CSS avec fichiers CSS personnalisés
 - **Langage** : Python 3.12+
+- **Styles** : CSS personnalisé + Tailwind CSS
 
 ## Installation
 
 ### Prérequis
 - Python 3.12 ou supérieur
 - pip (gestionnaire de paquets Python)
+- Node.js et npm (optionnel, pour compiler Tailwind CSS)
 
 ### Étapes d'installation
 
@@ -56,22 +58,29 @@ git clone https://github.com/aymeric-nzore/AGL.git
 cd AGL
 ```
 
-2. **Installer les dépendances**
+2. **Installer les dépendances Python**
 ```bash
 pip install -r requirements.txt
 ```
 
-3. **Appliquer les migrations**
+3. **(Optionnel) Installer les dépendances Node.js et compiler Tailwind CSS**
+```bash
+npm install
+npm run build:css
+```
+Note : Le CSS est également chargé via CDN pour un déploiement rapide sans compilation.
+
+4. **Appliquer les migrations**
 ```bash
 python manage.py migrate
 ```
 
-4. **Créer des données de test** (optionnel)
+5. **Créer des données de test** (optionnel)
 ```bash
 python create_sample_data.py
 ```
 
-5. **Lancer le serveur de développement**
+6. **Lancer le serveur de développement**
 ```bash
 python manage.py runserver
 ```
@@ -199,6 +208,30 @@ python manage.py createsuperuser
 ```
 
 ## Développement
+
+### Développement CSS
+
+Le projet utilise Tailwind CSS avec des fichiers CSS personnalisés :
+
+**Fichiers CSS:**
+- `static/css/styles.css` - Styles personnalisés et classes utilitaires
+- `static/css/tailwind.css` - Configuration Tailwind avec directives @layer
+
+**Mode développement avec watch:**
+```bash
+npm run watch:css
+```
+
+**Compiler le CSS pour production:**
+```bash
+npm run build:css
+```
+
+Les styles sont organisés en plusieurs couches :
+- **Base** : Styles de réinitialisation et typographie
+- **Components** : Composants réutilisables (cartes, boutons, formulaires)
+- **Utilities** : Classes utilitaires personnalisées
+- **Animations** : fadeIn, slideInRight, pulse, etc.
 
 ### Créer de nouvelles migrations
 ```bash

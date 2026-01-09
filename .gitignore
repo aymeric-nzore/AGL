@@ -34,3 +34,16 @@ Thumbs.db
 .coverage
 htmlcov/
 .pytest_cache/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Generated CSS
+static/css/output.css
+static/css/output.css.map
+
