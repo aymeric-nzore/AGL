@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Système de Gestion Académique{% endblock %}</title>
+    {% load static %}
+    <!-- Tailwind CSS via CDN for development -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS Styles -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Modern Design System -->
+    <link rel="stylesheet" href="{% static 'css/modern.css' %}">
+    <!-- Additional custom styles -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+    </style>
+</head>
+<body class="bg-gray-50">
+    {% if user.is_authenticated %}
+    <nav class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <h1 class="text-xl font-bold">Système de Gestion Académique</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="text-sm">{{ user.username }}</span>
+                    <a href="{% url 'profile' %}" class="hover:bg-blue-700 px-3 py-2 rounded">Mon Profil</a>
+                    {% if user_type == 'admin' %}
+                        <a href="{% url 'admin_dashboard' %}" class="hover:bg-blue-700 px-3 py-2 rounded">Tableau de bord</a>
+                    {% elif user_type == 'enseignant' %}
+                        <a href="{% url 'teacher_dashboard' %}" class="hover:bg-blue-700 px-3 py-2 rounded">Tableau de bord</a>
+                    {% elif user_type == 'eleve' %}
+                        <a href="{% url 'student_dashboard' %}" class="hover:bg-blue-700 px-3 py-2 rounded">Tableau de bord</a>
+                    {% endif %}
+                    <a href="{% url 'logout' %}" class="bg-red-500 hover:bg-red-600 px-3 py-2 rounded">Déconnexion</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+
+    <main class="container mx-auto px-4 py-8">
+        {% if messages %}
+        <div class="mb-4">
+            {% for message in messages %}
+            <div class="bg-{% if message.tags == 'error' %}red{% elif message.tags == 'success' %}green{% elif message.tags == 'warning' %}yellow{% else %}blue{% endif %}-100 border border-{% if message.tags == 'error' %}red{% elif message.tags == 'success' %}green{% elif message.tags == 'warning' %}yellow{% else %}blue{% endif %}-400 text-{% if message.tags == 'error' %}red{% elif message.tags == 'success' %}green{% elif message.tags == 'warning' %}yellow{% else %}blue{% endif %}-700 px-4 py-3 rounded mb-2">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Système de Gestion Académique - Tous droits réservés</p>
+        </div>
+    </footer>
+</body>
+</html>

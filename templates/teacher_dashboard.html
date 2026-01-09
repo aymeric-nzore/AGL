@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block title %}Tableau de bord Enseignant{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <h1 class="text-4xl font-bold text-blue-600 mb-8">Tableau de bord Enseignant</h1>
+
+    {% if is_responsable %}
+    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path>
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-yellow-700">
+                    Vous êtes responsable du département <strong>{{ departement_dirige.nom }}</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Statistics -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm">Mes Matières</p>
+                    <p class="text-3xl font-bold text-blue-600">{{ stats.matieres }}</p>
+                </div>
+                <div class="bg-blue-100 p-3 rounded-full">
+                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm">Cours créés</p>
+                    <p class="text-3xl font-bold text-green-600">{{ stats.cours }}</p>
+                </div>
+                <div class="bg-green-100 p-3 rounded-full">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-gray-500 text-sm">Notes attribuées</p>
+                    <p class="text-3xl font-bold text-purple-600">{{ stats.notes }}</p>
+                </div>
+                <div class="bg-purple-100 p-3 rounded-full">
+                    <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Sections -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Course Content Management -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Gestion des Cours</h2>
+            <div class="space-y-3">
+                <a href="{% url 'cours_list' %}" class="block w-full bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 transition duration-200 text-center">
+                    Mes Cours et Exercices
+                </a>
+                <a href="{% url 'cours_create' %}" class="block w-full bg-green-500 text-white py-3 px-4 rounded-lg hover:bg-green-600 transition duration-200 text-center">
+                    Ajouter un Cours/Exercice
+                </a>
+            </div>
+        </div>
+
+        <!-- Grade Management -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Gestion des Notes</h2>
+            <div class="space-y-3">
+                <a href="{% url 'notes_list' %}" class="block w-full bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 transition duration-200 text-center">
+                    Voir les Notes
+                </a>
+                <a href="{% url 'notes_create' %}" class="block w-full bg-green-500 text-white py-3 px-4 rounded-lg hover:bg-green-600 transition duration-200 text-center">
+                    Attribuer une Note
+                </a>
+            </div>
+        </div>
+
+        <!-- Attendance Management -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Gestion des Présences</h2>
+            <div class="space-y-3">
+                <a href="{% url 'presence_list' %}" class="block w-full bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 transition duration-200 text-center">
+                    Liste des Présences
+                </a>
+                <a href="{% url 'presence_create' %}" class="block w-full bg-green-500 text-white py-3 px-4 rounded-lg hover:bg-green-600 transition duration-200 text-center">
+                    Marquer Présence/Absence
+                </a>
+            </div>
+        </div>
+
+        {% if is_responsable %}
+        <!-- Department Head Features -->
+        <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-yellow-400">
+            <h2 class="text-2xl font-bold text-gray-700 mb-4">Responsable de Département</h2>
+            <div class="space-y-3">
+                <a href="{% url 'departement_stats' departement_dirige.id %}" class="block w-full bg-yellow-500 text-white py-3 px-4 rounded-lg hover:bg-yellow-600 transition duration-200 text-center">
+                    Statistiques du Département
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

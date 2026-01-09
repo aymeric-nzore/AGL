@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block title %}Tableau de bord Administrateur{% endblock %}
+
+{% block content %}
+<div class="fade-in-up">
+    <h1 class="text-4xl font-bold mb-8">Tableau de bord Administrateur</h1>
+
+    <!-- Statistics Cards with Modern Design -->
+    <div class="dashboard-grid stagger-animation">
+        <div class="stat-card scale-in">
+            <div>
+                <p class="text-gray-500 text-sm font-medium mb-1">Collèges</p>
+                <p class="text-3xl font-bold text-gray-900 stat-number">{{ stats.colleges }}</p>
+            </div>
+            <div class="stat-icon stat-icon-blue">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                </svg>
+            </div>
+        </div>
+
+        <div class="stat-card scale-in">
+            <div>
+                <p class="text-gray-500 text-sm font-medium mb-1">Départements</p>
+                <p class="text-3xl font-bold text-gray-900 stat-number">{{ stats.departements }}</p>
+            </div>
+            <div class="stat-icon stat-icon-green">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
+                </svg>
+            </div>
+        </div>
+
+        <div class="stat-card scale-in">
+            <div>
+                <p class="text-gray-500 text-sm font-medium mb-1">Enseignants</p>
+                <p class="text-3xl font-bold text-gray-900 stat-number">{{ stats.enseignants }}</p>
+            </div>
+            <div class="stat-icon stat-icon-purple">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+            </div>
+        </div>
+
+        <div class="stat-card scale-in">
+            <div>
+                <p class="text-gray-500 text-sm font-medium mb-1">Élèves</p>
+                <p class="text-3xl font-bold text-gray-900 stat-number">{{ stats.eleves }}</p>
+            </div>
+            <div class="stat-icon stat-icon-orange">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Management Sections with Modern Cards -->
+    <div class="dashboard-section">
+        <!-- College Management -->
+        <div class="modern-card slide-in-right">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Gestion des Collèges</h2>
+            <div class="space-y-3">
+                <a href="{% url 'college_list' %}" class="btn btn-primary w-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                    </svg>
+                    Liste des Collèges
+                </a>
+                <a href="{% url 'college_create' %}" class="btn btn-success w-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Créer un Collège
+                </a>
+            </div>
+        </div>
+
+        <!-- Department Management -->
+        <div class="modern-card slide-in-right">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Gestion des Départements</h2>
+            <div class="space-y-3">
+                <a href="{% url 'departement_list' %}" class="btn btn-primary w-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                    </svg>
+                    Liste des Départements
+                </a>
+                <a href="{% url 'departement_create' %}" class="btn btn-success w-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Créer un Département
+                </a>
+            </div>
+        </div>
+
+        <!-- Course Management -->
+        <div class="modern-card slide-in-right">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Gestion des Matières</h2>
+            <div class="space-y-3">
+                <a href="{% url 'matiere_list' %}" class="btn btn-primary w-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                    </svg>
+                    Liste des Matières
+                </a>
+                <a href="{% url 'matiere_create' %}" class="btn btn-success w-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Créer une Matière
+                </a>
+            </div>
+        </div>
+
+        <!-- Classroom Management -->
+        <div class="modern-card slide-in-right">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Gestion des Salles</h2>
+            <div class="space-y-3">
+                <a href="{% url 'salle_list' %}" class="btn btn-primary w-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                    </svg>
+                    Liste des Salles
+                </a>
+                <a href="{% url 'salle_create' %}" class="btn btn-success w-full">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    Créer une Salle
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
