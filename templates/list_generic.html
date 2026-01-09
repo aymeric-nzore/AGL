@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="fade-in">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-blue-600">{{ title }}</h1>
+        {% if create_url %}
+        <a href="{{ create_url }}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+            + Ajouter
+        </a>
+        {% endif %}
+    </div>
+
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        {% if items %}
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    {% for header in headers %}
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        {{ header }}
+                    </th>
+                    {% endfor %}
+                    <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for item in items %}
+                <tr class="hover:bg-gray-50">
+                    {% for value in item.values %}
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {{ value }}
+                    </td>
+                    {% endfor %}
+                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        {% if item.edit_url %}
+                        <a href="{{ item.edit_url }}" class="text-blue-600 hover:text-blue-900 mr-3">Modifier</a>
+                        {% endif %}
+                        {% if item.delete_url %}
+                        <a href="{{ item.delete_url }}" class="text-red-600 hover:text-red-900" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?')">Supprimer</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="p-8 text-center text-gray-500">
+            <p>Aucun élément trouvé.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
