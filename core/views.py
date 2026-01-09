@@ -164,15 +164,15 @@ def college_list(request):
     for college in colleges:
         items.append({
             'values': [college.nom, college.adresse, college.telephone, college.academie.nom],
-            'edit_url': f'/admin/college/{college.id}/edit/',
-            'delete_url': f'/admin/college/{college.id}/delete/'
+            'edit_url': f'/manage/college/{college.id}/edit/',
+            'delete_url': f'/manage/college/{college.id}/delete/'
         })
     
     return render(request, 'list_generic.html', {
         'title': 'Liste des Collèges',
         'headers': ['Nom', 'Adresse', 'Téléphone', 'Académie'],
         'items': items,
-        'create_url': '/admin/college/create/',
+        'create_url': '/manage/college/create/',
         'user_type': 'admin'
     })
 
@@ -207,7 +207,7 @@ def college_create(request):
     return render(request, 'form_generic.html', {
         'title': 'Créer un Collège',
         'form_fields': form_fields,
-        'back_url': '/admin/college/',
+        'back_url': '/manage/college/',
         'user_type': 'admin'
     })
 
@@ -222,15 +222,15 @@ def departement_list(request):
         responsable_nom = str(dept.responsable.utilisateur) if dept.responsable else 'Non assigné'
         items.append({
             'values': [dept.nom, dept.code_departement, dept.college.nom, responsable_nom],
-            'edit_url': f'/admin/departement/{dept.id}/edit/',
-            'delete_url': f'/admin/departement/{dept.id}/delete/'
+            'edit_url': f'/manage/departement/{dept.id}/edit/',
+            'delete_url': f'/manage/departement/{dept.id}/delete/'
         })
     
     return render(request, 'list_generic.html', {
         'title': 'Liste des Départements',
         'headers': ['Nom', 'Code', 'Collège', 'Responsable'],
         'items': items,
-        'create_url': '/admin/departement/create/',
+        'create_url': '/manage/departement/create/',
         'user_type': 'admin'
     })
 
@@ -268,7 +268,7 @@ def departement_create(request):
     return render(request, 'form_generic.html', {
         'title': 'Créer un Département',
         'form_fields': form_fields,
-        'back_url': '/admin/departement/',
+        'back_url': '/manage/departement/',
         'user_type': 'admin'
     })
 
@@ -284,15 +284,15 @@ def matiere_list(request):
         salle_nom = str(matiere.salle) if matiere.salle else 'Non assignée'
         items.append({
             'values': [matiere.libelle, matiere.departement.nom, enseignant_nom, salle_nom],
-            'edit_url': f'/admin/matiere/{matiere.id}/edit/',
-            'delete_url': f'/admin/matiere/{matiere.id}/delete/'
+            'edit_url': f'/manage/matiere/{matiere.id}/edit/',
+            'delete_url': f'/manage/matiere/{matiere.id}/delete/'
         })
     
     return render(request, 'list_generic.html', {
         'title': 'Liste des Matières',
         'headers': ['Libellé', 'Département', 'Enseignant', 'Salle'],
         'items': items,
-        'create_url': '/admin/matiere/create/',
+        'create_url': '/manage/matiere/create/',
         'user_type': 'admin'
     })
 
@@ -332,7 +332,7 @@ def matiere_create(request):
     return render(request, 'form_generic.html', {
         'title': 'Créer une Matière',
         'form_fields': form_fields,
-        'back_url': '/admin/matiere/',
+        'back_url': '/manage/matiere/',
         'user_type': 'admin'
     })
 
@@ -346,15 +346,15 @@ def salle_list(request):
     for salle in salles:
         items.append({
             'values': [salle.numero, salle.capacite],
-            'edit_url': f'/admin/salle/{salle.id}/edit/',
-            'delete_url': f'/admin/salle/{salle.id}/delete/'
+            'edit_url': f'/manage/salle/{salle.id}/edit/',
+            'delete_url': f'/manage/salle/{salle.id}/delete/'
         })
     
     return render(request, 'list_generic.html', {
         'title': 'Liste des Salles',
         'headers': ['Numéro', 'Capacité'],
         'items': items,
-        'create_url': '/admin/salle/create/',
+        'create_url': '/manage/salle/create/',
         'user_type': 'admin'
     })
 
@@ -378,7 +378,7 @@ def salle_create(request):
     return render(request, 'form_generic.html', {
         'title': 'Créer une Salle',
         'form_fields': form_fields,
-        'back_url': '/admin/salle/',
+        'back_url': '/manage/salle/',
         'user_type': 'admin'
     })
 

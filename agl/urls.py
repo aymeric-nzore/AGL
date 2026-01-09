@@ -3,7 +3,7 @@ from django.urls import path
 from core import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("django-admin/", admin.site.urls),
     
     # Authentication
     path("", views.login_view, name="login"),
@@ -12,25 +12,25 @@ urlpatterns = [
     path("profile/", views.profile_view, name="profile"),
     
     # Dashboards
-    path("admin/dashboard/", views.admin_dashboard, name="admin_dashboard"),
-    path("teacher/dashboard/", views.teacher_dashboard, name="teacher_dashboard"),
-    path("student/dashboard/", views.student_dashboard, name="student_dashboard"),
+    path("dashboard/admin/", views.admin_dashboard, name="admin_dashboard"),
+    path("dashboard/teacher/", views.teacher_dashboard, name="teacher_dashboard"),
+    path("dashboard/student/", views.student_dashboard, name="student_dashboard"),
     
     # Admin - College Management
-    path("admin/college/", views.college_list, name="college_list"),
-    path("admin/college/create/", views.college_create, name="college_create"),
+    path("manage/college/", views.college_list, name="college_list"),
+    path("manage/college/create/", views.college_create, name="college_create"),
     
     # Admin - Departement Management
-    path("admin/departement/", views.departement_list, name="departement_list"),
-    path("admin/departement/create/", views.departement_create, name="departement_create"),
+    path("manage/departement/", views.departement_list, name="departement_list"),
+    path("manage/departement/create/", views.departement_create, name="departement_create"),
     
     # Admin - Matiere Management
-    path("admin/matiere/", views.matiere_list, name="matiere_list"),
-    path("admin/matiere/create/", views.matiere_create, name="matiere_create"),
+    path("manage/matiere/", views.matiere_list, name="matiere_list"),
+    path("manage/matiere/create/", views.matiere_create, name="matiere_create"),
     
     # Admin - Salle Management
-    path("admin/salle/", views.salle_list, name="salle_list"),
-    path("admin/salle/create/", views.salle_create, name="salle_create"),
+    path("manage/salle/", views.salle_list, name="salle_list"),
+    path("manage/salle/create/", views.salle_create, name="salle_create"),
     
     # Teacher - Cours Management
     path("teacher/cours/", views.cours_list, name="cours_list"),
