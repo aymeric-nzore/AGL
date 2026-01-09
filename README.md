@@ -40,8 +40,9 @@ Système d'information pour la gestion centralisée et efficace des cours, ensei
 - **Backend** : Django 6.0.1
 - **Base de données** : SQLite (développement), PostgreSQL (production possible)
 - **Frontend** : Tailwind CSS avec fichiers CSS personnalisés
+- **Design System** : Modern CSS avec gradients, animations et glassmorphism
 - **Langage** : Python 3.12+
-- **Styles** : CSS personnalisé + Tailwind CSS
+- **Styles** : CSS personnalisé + Tailwind CSS + Modern Design System
 
 ## Installation
 
@@ -211,11 +212,19 @@ python manage.py createsuperuser
 
 ### Développement CSS
 
-Le projet utilise Tailwind CSS avec des fichiers CSS personnalisés :
+Le projet utilise Tailwind CSS avec des fichiers CSS personnalisés et un système de design moderne :
 
 **Fichiers CSS:**
 - `static/css/styles.css` - Styles personnalisés et classes utilitaires
 - `static/css/tailwind.css` - Configuration Tailwind avec directives @layer
+- `static/css/modern.css` - **NOUVEAU** Design system moderne avec:
+  - Variables CSS personnalisées pour le thème
+  - Gradients et effets glassmorphism
+  - Animations fluides (fadeInUp, slideInRight, scaleIn)
+  - Composants modernes avec hover effects
+  - Shadows et border radius personnalisés
+  - Support du dark mode
+  - Design responsive optimisé
 
 **Mode développement avec watch:**
 ```bash
@@ -228,10 +237,12 @@ npm run build:css
 ```
 
 Les styles sont organisés en plusieurs couches :
-- **Base** : Styles de réinitialisation et typographie
-- **Components** : Composants réutilisables (cartes, boutons, formulaires)
+- **Variables CSS** : Palette de couleurs moderne, ombres, radius
+- **Components** : Composants réutilisables avec design moderne
 - **Utilities** : Classes utilitaires personnalisées
-- **Animations** : fadeIn, slideInRight, pulse, etc.
+- **Animations** : fadeInUp, slideInRight, scaleIn, stagger effects
+- **Responsive** : Breakpoints et grilles adaptatives
+- **Dark Mode** : Support automatique du mode sombre
 
 ### Créer de nouvelles migrations
 ```bash
